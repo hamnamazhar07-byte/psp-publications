@@ -1,0 +1,551 @@
+/* --- GLOBAL VARIABLES & RESET --- */
+/* Variables make it easy to change colors later if needed */
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --dark-gray: #1a1a1a;
+    --light-gray: #f4f4f4;
+    --border-color: #e0e0e0;
+}
+
+/* Reset margins and set smooth scrolling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Creates the smooth scroll effect */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- HEADER & NAVIGATION --- */
+header {
+    background-color: var(--black);
+    border-bottom: 2px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Styling for your uploaded logo */
+.logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+h1 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    color: var(--white);
+}
+
+.sub-heading {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #ccc;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--white);
+    /* Links are now white */
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    border-bottom: 2px solid var(--white);
+    /* Hover line is now white */
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--white);
+    /* Mobile menu icon is now white */
+}
+
+/* --- GENERAL SECTIONS --- */
+.section {
+    padding: 80px 0;
+}
+
+h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.section-desc {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.dark-bg {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.light-gray-bg {
+    background-color: var(--light-gray);
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* --- BUTTONS --- */
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background 0.3s, color 0.3s;
+    cursor: pointer;
+    border: 2px solid var(--black);
+}
+
+.primary-btn {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.primary-btn:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+/* --- DOWNLOAD BUTTON STYLING --- */
+.secondary-btn {
+    display: block;
+    width: 100%; /* Ensures it takes up the full width of the card */
+    text-align: center;
+    padding: 12px;
+    background-color: var(--black); /* Solid black background */
+    border: 2px solid var(--black);
+    text-decoration: none;
+    color: var(--white); /* White text */
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    margin-top: auto; /* Keeps the button pushed to the bottom of the card */
+}
+
+/* Adds a little space between the download icon and the text */
+.secondary-btn i {
+    margin-right: 8px;
+}
+
+/* Invert colors on hover for a sleek interactive effect */
+.secondary-btn:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+/* --- COMING SOON / DISABLED BUTTON --- */
+.btn-disabled {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background-color: #cbd5e0; /* Neutral grey color */
+    border: 2px solid #cbd5e0;
+    text-decoration: none;
+    color: #718096; /* Muted text color */
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    cursor: not-allowed; /* Shows a "blocked" cursor on hover */
+    margin-top: auto;
+}
+
+.btn-disabled i {
+    margin-right: 8px;
+}
+
+/* No hover effect for disabled buttons to keep them feeling "inactive" */
+
+/* Inverted button for black backgrounds */
+.primary-btn.inverted {
+    background-color: var(--white);
+    color: var(--black);
+    border-color: var(--white);
+}
+
+.primary-btn.inverted:hover {
+    background-color: transparent;
+    color: var(--white);
+}
+
+/* --- SECTION 1: HIGHLIGHTS SLIDER --- */
+.slider-container {
+    width: 100%;
+    max-width: 500px; /* Limits the max width so it doesn't look huge on monitors */
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 12px; /* Smooth corners */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px 0;
+    scroll-snap-type: x mandatory;
+    /* Makes it snap smoothly to images */
+}
+
+.slider::-webkit-scrollbar {
+    height: 8px;
+}
+
+.slider::-webkit-scrollbar-thumb {
+    background: var(--black);
+    border-radius: 4px;
+}
+
+.slide {
+    min-width: 100%;
+    height: 450px;
+    scroll-snap-align: center;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustment for Mobile Phones */
+@media (max-width: 768px) {
+    .slide {
+        height: 250px; /* Smaller height for mobile screens */
+    }
+}
+
+/* --- SECTION 2: INTRODUCTION UPDATES --- */
+#intro {
+    background-color: var(--white); /* Removed black background */
+    color: var(--black);
+    padding: 100px 0;
+}
+
+.section-title {
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.intro-text {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* --- SECTION 3: HORIZON LIST --- */
+.editions-list {
+    margin-top: 40px;
+}
+
+.edition-item {
+    display: flex;
+    gap: 30px;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 8px;
+    background: var(--white);
+    margin-bottom: 20px;
+}
+
+.cover-thumb {
+    width: 150px;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* --- SECTION 4: ZENITH GRID --- */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Responsive grid */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    /* Hover lift effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.issue-date {
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.highlights-list {
+    margin: 15px 0 15px 20px;
+    font-size: 0.9rem;
+}
+
+/* --- SECTION 5: SUBSCRIPTION WITH BACKGROUND --- */
+.subscription-section {
+    background-image: url('Keep_me_update_bg.png'); /* Change this to your image filename */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Creates a cool parallax scrolling effect */
+    position: relative;
+    color: var(--white);
+}
+
+/* Dark overlay to make the text readable over the image */
+.overlay {
+    background: rgba(0, 0, 0, 0.7); 
+    padding: 100px 0;
+}
+
+.sub-heading-white {
+    font-size: 2rem;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.sub-text {
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* Subscription Form Styling */
+.subscription-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.subscription-form input {
+    padding: 15px 20px;
+    width: 70%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 4px;
+    font-family: var(--font-main);
+}
+
+.primary-btn-white {
+    background-color: var(--white);
+    color: var(--black);
+    padding: 15px 30px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.primary-btn-white:hover {
+    background-color: #cccccc;
+}
+
+/* Mobile adjustments for form */
+@media (max-width: 768px) {
+    .subscription-form {
+        flex-direction: column;
+    }
+    .subscription-form input {
+        width: 100%;
+    }
+}
+
+/* --- FOOTER SOCIAL STYLES --- */
+/* Custom alignment for the multi-line address link */
+.location-link {
+    align-items: flex-start !important;
+    line-height: 1.5;
+}
+
+.location-link i {
+    margin-top: 4px; /* Keeps the map pin perfectly aligned with the first line of text */
+}
+.footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 60px 0 20px;
+    border-top: 1px solid #333;
+}
+
+.footer-heading {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between logo and text */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links i {
+    font-size: 1.2rem; /* Makes the logos slightly larger */
+    width: 20px; /* Keeps text aligned even if logos differ in width */
+    text-align: center;
+}
+
+.social-links a:hover {
+    color: #aaaaaa;
+    transform: translateX(5px); /* Subtle slide effect on hover */
+}
+
+.copyright {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #222;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        /* Show hamburger menu on mobile */
+    }
+
+    nav {
+        display: none;
+        /* Hide nav by default on mobile */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        border-bottom: 2px solid var(--black);
+    }
+
+    nav.active {
+        display: block;
+        /* Show nav when active class is added by JS */
+    }
+
+    nav ul {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .edition-item {
+        flex-direction: column;
+        /* Stacks image and text on mobile */
+        align-items: center;
+        text-align: center;
+    }
+
+    .subscription-form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .subscription-form input {
+        width: 100%;
+    }
+}
