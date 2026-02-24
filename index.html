@@ -240,9 +240,13 @@ Our publications serve as a bridge between academia and the broader scientific c
             </form>
 
 <script>
-  document.getElementById('subscription-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
+    window.addEventListener('load',function() {
+        var form=document.getElementById('subscription-form');
+
+    if(form) {
+        form.addEventListener('submit', function(e) {
+         e.preventDefault();
+            
     var formData = new FormData(this);
     var email = formData.get('email');
     
@@ -252,15 +256,17 @@ Our publications serve as a bridge between academia and the broader scientific c
         mode: 'no-cros',
       body: new URLSearchParams({email: email})
     })
-    .then(response => response.json())
-    .then(data => {
+    .then(function(response){
       document.getElementById('message').textContent = 'Thanks for subscribing!';
-      document.getElementById('newsletter-form').reset();
+      form.reset();
     })
-    .catch(error => {
+    .catch(function(error) {
+        console.log(error);
       document.getElementById('message').textContent = 'Something went wrong. Please try again.';
     });
   });
+}
+});      
 </script>
         </div>
     </div>
