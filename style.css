@@ -510,7 +510,7 @@ h2 {
         /* Show hamburger menu on mobile */
     }
 
-    #nav-links {
+    nav-links {
         display: none;
         /* Hide nav by default on mobile */
         position: absolute;
@@ -521,17 +521,18 @@ h2 {
         border-bottom: 2px solid var(--black);
     }
 
-    #nav-links.active {
+    nav-links.active {
         display: block;
         /* Show nav when active class is added by JS */
     }
 
-    #nav-link a{
+    nav-link a{
         color: var(--black) !important;
     }
 
-    #nav-links ul {
-        flex-direction: column;
+    nav-links ul {
+        flex-direction: column !important;
+        background-color: white !important;
         list-style: none;
         padding: 20px;
         gap: 15px;
@@ -539,10 +540,17 @@ h2 {
         text-align: center;
     }
 
-    #nav-links ul li {
+    nav-links ul li {
         padding: 10px 0;
         border-bottom: 1px solid rgba(0,0,0,0.1);
         text-align: center;
+    }
+
+    nav-links ul li a {
+        padding: 12px 20px;
+        color: black !important;
+        display: block !important;
+        font-size: 1rem !important;
     }
 
     .edition-item {
