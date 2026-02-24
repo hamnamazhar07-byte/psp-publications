@@ -510,7 +510,7 @@ h2 {
         /* Show hamburger menu on mobile */
     }
 
-    nav {
+    #nav-links {
         display: none;
         /* Hide nav by default on mobile */
         position: absolute;
@@ -521,7 +521,7 @@ h2 {
         border-bottom: 2px solid var(--black);
     }
 
-    nav.active {
+    #nav-links.active {
         display: block;
         /* Show nav when active class is added by JS */
     }
