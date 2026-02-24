@@ -253,7 +253,7 @@ Our publications serve as a bridge between academia and the broader scientific c
     //web app URL
     fetch('https://script.google.com/macros/s/AKfycbytR_POpeNj1JuZn9DtxRud2C0CUG8lqRgnbEr3Oi8jeLB41pAShFokA-dWEXGp3Q1Oyg/exec', {
       method: 'POST',
-        mode: 'no-cros',
+        mode: 'no-cors',
       body: new URLSearchParams({email: email})
     })
     .then(function(response){
