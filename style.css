@@ -526,10 +526,22 @@ h2 {
         /* Show nav when active class is added by JS */
     }
 
-    nav ul {
+    #nav-link a{
+        color: var(--black) !important;
+    }
+
+    #nav-links ul {
         flex-direction: column;
+        list-style: none;
         padding: 20px;
         gap: 15px;
+        display: flex;
+        text-align: center;
+    }
+
+    #nav-links ul li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
         text-align: center;
     }
 
