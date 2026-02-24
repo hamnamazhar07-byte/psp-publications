@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Inter:wght@400;600&family=Lora:ital,wght@0,700;1,700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
 </head>
 <body>
@@ -53,7 +55,6 @@
         <div class="container">
             <h2>INtroduction</h2>
             <p>Welcome to the publication wing of the PIEAS Society of Physics (PSP). We are dedicated to share knowledge, research, and insights within the physics community. Our mission is to create a platform for academic excellence and foster intellectual discourse among students and researchers.
-<br>
 Through our carefully curated publications, we aim to showcase the latest developments in physics, highlight groundbreaking research, and provide a space for the academic community to engage with cutting-edge ideas. Each publication is crafted with meticulous attention to detail and professional standards.
 Our publications serve as a bridge between academia and the broader scientific community, ensuring that important discoveries and insights reach those who need them most. We are committed to maintaining the highest standards of academic integrity and presentation.</p>
         </div>
@@ -248,6 +249,7 @@ Our publications serve as a bridge between academia and the broader scientific c
     //web app URL
     fetch('https://script.google.com/macros/s/AKfycbytR_POpeNj1JuZn9DtxRud2C0CUG8lqRgnbEr3Oi8jeLB41pAShFokA-dWEXGp3Q1Oyg/exec', {
       method: 'POST',
+        mode: 'no-cros'
       body: new URLSearchParams({email: email})
     })
     .then(response => response.json())
@@ -302,7 +304,6 @@ Our publications serve as a bridge between academia and the broader scientific c
     <script>
         function toggleMenu() {
             const nav = document.getElementById("nav-links");
-            // Toggles the "active" class on and off
             nav.classList.toggle("active");
         }
     </script>
