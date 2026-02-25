@@ -312,6 +312,12 @@ Our publications serve as a bridge between academia and the broader scientific c
             const nav = document.getElementById("nav-links");
             nav.classList.toggle("active");
         }
+        document.querySelectorAll('#nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const nav= document.getElementById("nav-links");
+                nav.classList.remove("active");
+            });
+        });
     </script>
 </body>
 </html>
