@@ -231,20 +231,17 @@ h2 {
 /* --- SECTION 1: HIGHLIGHTS SLIDER --- */
 .slider-container {
     width: 100%;
-    max-width: 500px; /* Limits the max width so it doesn't look huge on monitors */
-    margin: 0 auto;
+    max-width: 100%;        /* Remove the 500px limit */
+    margin: 0;              /* Remove auto margin */
     overflow: hidden;
-    border-radius: 12px; /* Smooth corners */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 0;       /* Remove rounded corners */
+    box-shadow: none;       /* Remove shadow */
 }
+
 
 .slider {
     display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding: 20px 0;
-    scroll-snap-type: x mandatory;
-    /* Makes it snap smoothly to images */
+    width: 100%;
 }
 
 .slider::-webkit-scrollbar {
@@ -264,93 +261,23 @@ h2 {
 
 .slide img {
     width: 100%;
-    height: 100%;
+    height: 500px;
     object-fit: cover; 
     object-position: center;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: block;
 }
 
 /* Responsive adjustment for Mobile Phones */
-@media (max-width: 768px) {
+@media (max-width: 768px) and (orientation: landscape) {
     .slide {
-        height: 250px; /* Smaller height for mobile screens */
+        height: 100vh;
+    }
+    .slide img {
+        height: 100vh;
+        width: 100vw;
+        object-fit: cover;
     }
 }
-
-/* ── The section between images and intro ── */
-  .constellation-section {
-    position: relative;
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-    background: #0a0a0f;
-  }
-
-  canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Subtle top & bottom fade so it bleeds into surrounding sections */
-  .constellation-section::before,
-  .constellation-section::after {
-    content: '';
-    position: absolute;
-    left: 0; right: 0;
-    height: 48px;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .constellation-section::before {
-    top: 0;
-    background: linear-gradient(to bottom, #ffffff, transparent);
-  }
-  .constellation-section::after {
-    bottom: 0;
-    background: linear-gradient(to top, #ffffff, transparent);
-  }
-
-  /* Optional label that floats in the center */
-  .constellation-label {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    pointer-events: none;
-  }
-  .constellation-label span {
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.18);
-    user-select: none;
-  }
-
-  /* ── Demo chrome so you can see it in context ── */
-  .demo-block {
-    padding: 48px 120px;
-    background: #fff;
-    font-family: Arial, sans-serif;
-    color: #111;
-  }
-  .demo-block h2 { font-size: 2rem; margin-bottom: 12px; }
-  .demo-block p  { color: #444; line-height: 1.7; max-width: 700px; }
-  .demo-img {
-    width: 100%;
-    height: 200px;
-    background: #1a1a1a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    font-family: monospace;
-    font-size: 13px;
-  }
 
 /* --- SECTION 2: INTRODUCTION UPDATES --- */
 #intro {
