@@ -263,13 +263,13 @@ h2 {
 
 .slide {
     min-width: 100%;
-    height: 450px;
+    height: 400px;
     scroll-snap-align: center;
 }
 
 .slide img {
     width: 100%;
-    height: 450px;
+    height: 400px;
     object-fit: cover; 
     object-position: center;
     display: block;
@@ -332,10 +332,10 @@ h2 {
 /* --- SECTION 4: ZENITH GRID --- */
 .grid-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     /* Responsive grid */
-    gap: 20px;
-    margin-top: 30px;
+    gap: 30px;
+    margin-top: 40px;
 }
 
 .card {
@@ -354,12 +354,12 @@ h2 {
 
 .card img {
     width: 100%;
-    height: 220px;
+    height: 300px;
     border-bottom: 1px solid var(--border-color);
 }
 
 .card-content {
-    padding: 15px;
+    padding: 20px;
 }
 
 .issue-date {
