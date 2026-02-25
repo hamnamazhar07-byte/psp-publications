@@ -51,165 +51,14 @@
             </div>
     </section>
 
-    <div> class="demo-img">[ Your event / magazine images above ]</div>
-
     <section class="constellation-section" id="constellation-divider">
-  <canvas id="particleCanvas"></canvas>
-  <div class="constellation-label">
-    <span>PIEAS Society for Physics</span>
-  </div>
+         <canvas id="particleCanvas"></canvas>
+           <div class="constellation-label">
+              <span>PIEAS Society for Physics</span>
+        </div>
 </section>
-    <div> class="demo-block">
-  <h2>INTRODUCTION</h2>
-  <p>Welcome to the publication wing of the PIEAS Society of Physics (PSP). We are dedicated to share knowledge, research, and insights within the physics community. Our mission is to create a platform for academic excellence and foster intellectual discourse among students and researchers.</p>
-</div>
-<script>
-(function () {
-  const canvas = document.getElementById('particleCanvas');
-  const section = document.getElementById('constellation-divider');
-  const ctx = canvas.getContext('2d');
+    
 
-  // ── Config ──────────────────────────────────
-  const PARTICLE_COUNT   = 90;
-  const CONNECTION_DIST  = 130;   // px – max distance to draw a line
-  const MOUSE_RADIUS     = 160;   // px – mouse attraction radius
-  const MOUSE_STRENGTH   = 0.012; // how strongly particles drift toward mouse
-  const BASE_SPEED       = 0.28;
-  const PARTICLE_RADIUS  = 1.6;
-
-  // Physics-y accent colours (cold blue / cyan / white)
-  const COLORS = [
-    'rgba(180, 210, 255, 0.85)',
-    'rgba(120, 180, 255, 0.75)',
-    'rgba(200, 230, 255, 0.60)',
-    'rgba(255, 255, 255, 0.90)',
-    'rgba(100, 200, 240, 0.70)',
-  ];
-
-  let W, H, particles, mouse = { x: -9999, y: -9999 };
-
-  // ── Resize ──────────────────────────────────
-  function resize() {
-    const rect = section.getBoundingClientRect();
-    W = canvas.width  = rect.width  || window.innerWidth;
-    H = canvas.height = rect.height || 220;
-  }
-
-  // ── Particle factory ────────────────────────
-  function makeParticle() {
-    const angle = Math.random() * Math.PI * 2;
-    const speed = BASE_SPEED * (0.4 + Math.random() * 0.9);
-    return {
-      x:  Math.random() * W,
-      y:  Math.random() * H,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      r:  PARTICLE_RADIUS * (0.6 + Math.random() * 0.8),
-      color: COLORS[Math.floor(Math.random() * COLORS.length)],
-      // twinkle
-      alpha: 0.5 + Math.random() * 0.5,
-      alphaDelta: (Math.random() - 0.5) * 0.008,
-    };
-  }
-
-  function init() {
-    resize();
-    particles = Array.from({ length: PARTICLE_COUNT }, makeParticle);
-  }
-
-  // ── Draw ────────────────────────────────────
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    // update + draw particles
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-
-      // gentle mouse attraction
-      const dx = mouse.x - p.x;
-      const dy = mouse.y - p.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < MOUSE_RADIUS && dist > 0) {
-        const force = (1 - dist / MOUSE_RADIUS) * MOUSE_STRENGTH;
-        p.vx += dx / dist * force;
-        p.vy += dy / dist * force;
-      }
-
-      // speed cap
-      const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-      if (spd > BASE_SPEED * 2.2) {
-        p.vx = (p.vx / spd) * BASE_SPEED * 2.2;
-        p.vy = (p.vy / spd) * BASE_SPEED * 2.2;
-      }
-
-      p.x += p.vx;
-      p.y += p.vy;
-
-      // wrap edges
-      if (p.x < -10) p.x = W + 10;
-      if (p.x > W + 10) p.x = -10;
-      if (p.y < -10) p.y = H + 10;
-      if (p.y > H + 10) p.y = -10;
-
-      // twinkle
-      p.alpha += p.alphaDelta;
-      if (p.alpha > 1 || p.alpha < 0.25) p.alphaDelta *= -1;
-
-      // draw dot
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.color.replace(/[\d.]+\)$/, `${p.alpha.toFixed(2)})`);
-      ctx.fill();
-    }
-
-    // draw connections
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const a = particles[i], b = particles[j];
-        const dx = a.x - b.x, dy = a.y - b.y;
-        const d = Math.sqrt(dx * dx + dy * dy);
-        if (d < CONNECTION_DIST) {
-          const opacity = (1 - d / CONNECTION_DIST) * 0.35;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = `rgba(160, 210, 255, ${opacity.toFixed(3)})`;
-          ctx.lineWidth = 0.7;
-          ctx.stroke();
-        }
-      }
-    }
-
-    requestAnimationFrame(draw);
-  }
-
-  // ── Mouse tracking ──────────────────────────
-  section.addEventListener('mousemove', e => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  });
-  section.addEventListener('mouseleave', () => {
-    mouse.x = -9999; mouse.y = -9999;
-  });
-
-  // ── Touch support ────────────────────────────
-  section.addEventListener('touchmove', e => {
-    e.preventDefault();
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.touches[0].clientX - rect.left;
-    mouse.y = e.touches[0].clientY - rect.top;
-  }, { passive: false });
-  section.addEventListener('touchend', () => {
-    mouse.x = -9999; mouse.y = -9999;
-  });
-
-  window.addEventListener('resize', () => { resize(); });
-
-  init();
-  draw();
-})();
-</script>
     
     <section id="intro" class="section dark-bg">
         <div class="container">
@@ -478,6 +327,152 @@ Our publications serve as a bridge between academia and the broader scientific c
                 nav.classList.remove("active");
             });
         });
-    </script>
+    //script for constellation divider
+(function () {
+  const canvas = document.getElementById('particleCanvas');
+  const section = document.getElementById('constellation-divider');
+  const ctx = canvas.getContext('2d');
+
+  // config
+  const PARTICLE_COUNT   = 90;
+  const CONNECTION_DIST  = 130;   // px – max distance to draw a line
+  const MOUSE_RADIUS     = 160;   // px – mouse attraction radius
+  const MOUSE_STRENGTH   = 0.012; // how strongly particles drift toward mouse
+  const BASE_SPEED       = 0.28;
+  const PARTICLE_RADIUS  = 1.6;
+
+  // Physics-y accent colours (cold blue / cyan / white)
+  const COLORS = [
+    'rgba(180, 210, 255, 0.85)',
+    'rgba(120, 180, 255, 0.75)',
+    'rgba(200, 230, 255, 0.60)',
+    'rgba(255, 255, 255, 0.90)',
+    'rgba(100, 200, 240, 0.70)',
+  ];
+
+  let W, H, particles, mouse = { x: -9999, y: -9999 };
+
+  // resize
+  function resize() {
+    const rect = section.getBoundingClientRect();
+    W = canvas.width  = rect.width  || window.innerWidth;
+    H = canvas.height = rect.height || 220;
+  }
+
+  //particla factory
+  function makeParticle() {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = BASE_SPEED * (0.4 + Math.random() * 0.9);
+    return {
+      x:  Math.random() * W,
+      y:  Math.random() * H,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      r:  PARTICLE_RADIUS * (0.6 + Math.random() * 0.8),
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      // twinkle
+      alpha: 0.5 + Math.random() * 0.5,
+      alphaDelta: (Math.random() - 0.5) * 0.008,
+    };
+  }
+
+  function init() {
+    resize();
+    particles = Array.from({ length: PARTICLE_COUNT }, makeParticle);
+  }
+
+  // draw
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // update + draw particles
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      // gentle mouse attraction
+      const dx = mouse.x - p.x;
+      const dy = mouse.y - p.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < MOUSE_RADIUS && dist > 0) {
+        const force = (1 - dist / MOUSE_RADIUS) * MOUSE_STRENGTH;
+        p.vx += dx / dist * force;
+        p.vy += dy / dist * force;
+      }
+
+      // speed cap
+      const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+      if (spd > BASE_SPEED * 2.2) {
+        p.vx = (p.vx / spd) * BASE_SPEED * 2.2;
+        p.vy = (p.vy / spd) * BASE_SPEED * 2.2;
+      }
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // wrap edges
+      if (p.x < -10) p.x = W + 10;
+      if (p.x > W + 10) p.x = -10;
+      if (p.y < -10) p.y = H + 10;
+      if (p.y > H + 10) p.y = -10;
+
+      // twinkle
+      p.alpha += p.alphaDelta;
+      if (p.alpha > 1 || p.alpha < 0.25) p.alphaDelta *= -1;
+
+      // draw dot
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color.replace(/[\d.]+\)$/, `${p.alpha.toFixed(2)})`);
+      ctx.fill();
+    }
+
+    // draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i], b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < CONNECTION_DIST) {
+          const opacity = (1 - d / CONNECTION_DIST) * 0.35;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(160, 210, 255, ${opacity.toFixed(3)})`;
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  // mouse tracking
+  section.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  section.addEventListener('mouseleave', () => {
+    mouse.x = -9999; mouse.y = -9999;
+  });
+
+  // touch support
+  section.addEventListener('touchmove', e => {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.touches[0].clientX - rect.left;
+    mouse.y = e.touches[0].clientY - rect.top;
+  }, { passive: false });
+  section.addEventListener('touchend', () => {
+    mouse.x = -9999; mouse.y = -9999;
+  });
+
+  window.addEventListener('resize', () => { resize(); });
+
+  init();
+  draw();
+})();
+</script>
 </body>
 </html>
