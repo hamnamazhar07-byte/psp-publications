@@ -281,6 +281,7 @@ h2 {
 @media (max-width: 768px) {
     .hero-img {
         height: auto;
+        width: auto;
     }
 }
 
@@ -436,6 +437,11 @@ h2 {
     }
     .subscription-form input {
         width: 100%;
+    }
+    .subscription-section {
+        background-attachment: scroll; 
+        background-size: cover;
+        background-position: center;
     }
 }
 
