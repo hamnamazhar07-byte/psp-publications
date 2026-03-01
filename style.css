@@ -1,5 +1,5 @@
 /* --- GLOBAL VARIABLES & RESET --- */
-/* Variables make it easy to change colors later if needed */
+/*Variables make it easy to change colors later if needed*/
 :root {
     --black: #000000;
     --white: #ffffff;
@@ -8,7 +8,6 @@
     --border-color: #e0e0e0;
 }
 
-/* Reset margins and set smooth scrolling */
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +19,6 @@
 
 html {
     scroll-behavior: smooth;
-    /* Creates the smooth scroll effect */
 }
 
 body {
@@ -108,7 +106,6 @@ nav ul {
 nav a {
     text-decoration: none;
     color: var(--white);
-    /* Links are now white */
     font-weight: 600;
     font-size: 0.9rem;
     transition: all 0.3s ease;
@@ -116,7 +113,6 @@ nav a {
 
 nav a:hover {
     border-bottom: 2px solid var(--white);
-    /* Hover line is now white */
 }
 
 .menu-toggle {
@@ -126,7 +122,6 @@ nav a:hover {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--white);
-    /* Mobile menu icon is now white */
 }
 
 /* --- GENERAL SECTIONS --- */
@@ -186,18 +181,18 @@ h2 {
 /* --- DOWNLOAD BUTTON STYLING --- */
 .secondary-btn {
     display: block;
-    width: 100%; /* Ensures it takes up the full width of the card */
+    width: 100%; 
     text-align: center;
     padding: 12px;
-    background-color: var(--black); /* Solid black background */
+    background-color: var(--black); 
     border: 2px solid var(--black);
     text-decoration: none;
-    color: var(--white); /* White text */
+    color: var(--white); 
     font-weight: 700;
     font-size: 0.85rem;
     border-radius: 6px;
     transition: all 0.3s ease;
-    margin-top: auto; /* Keeps the button pushed to the bottom of the card */
+    margin-top: auto; 
 }
 
 /* Adds a little space between the download icon and the text */
@@ -211,28 +206,26 @@ h2 {
     color: var(--black);
 }
 
-/* --- COMING SOON / DISABLED BUTTON --- */
+/* --- COMING SOON BUTTON --- */
 .btn-disabled {
     display: block;
     width: 100%;
     text-align: center;
     padding: 12px;
-    background-color: #cbd5e0; /* Neutral grey color */
+    background-color: #cbd5e0; 
     border: 2px solid #cbd5e0;
     text-decoration: none;
-    color: #718096; /* Muted text color */
+    color: #718096; 
     font-weight: 700;
     font-size: 0.85rem;
     border-radius: 6px;
-    cursor: not-allowed; /* Shows a "blocked" cursor on hover */
+    cursor: not-allowed; 
     margin-top: auto;
 }
 
 .btn-disabled i {
     margin-right: 8px;
 }
-
-/* No hover effect for disabled buttons to keep them feeling "inactive" */
 
 /* Inverted button for black backgrounds */
 .primary-btn.inverted {
@@ -293,7 +286,7 @@ h2 {
 
 /* --- SECTION 2: INTRODUCTION UPDATES --- */
 #intro {
-    background-color: var(--white); /* Removed black background */
+    background-color: var(--white); 
     color: var(--black);
     padding: 100px 0;
 }
@@ -337,7 +330,6 @@ h2 {
 .grid-layout {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    /* Responsive grid */
     gap: 30px;
     margin-top: 40px;
 }
@@ -352,7 +344,6 @@ h2 {
 
 .card:hover {
     transform: translateY(-5px);
-    /* Hover lift effect */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -383,7 +374,7 @@ h2 {
     background-image: url('Keep_me_update_bg.png'); /* Change this to your image filename */
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Creates a cool parallax scrolling effect */
+    background-attachment: fixed; 
     position: relative;
     color: var(--white);
 }
@@ -449,14 +440,13 @@ h2 {
 }
 
 /* --- FOOTER SOCIAL STYLES --- */
-/* Custom alignment for the multi-line address link */
 .location-link {
     align-items: flex-start !important;
     line-height: 1.5;
 }
 
 .location-link i {
-    margin-top: 4px; /* Keeps the map pin perfectly aligned with the first line of text */
+    margin-top: 4px; 
 }
 .footer {
     background-color: var(--black);
@@ -484,19 +474,19 @@ h2 {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 12px; /* Space between logo and text */
+    gap: 12px; 
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .social-links i {
-    font-size: 1.2rem; /* Makes the logos slightly larger */
-    width: 20px; /* Keeps text aligned even if logos differ in width */
+    font-size: 1.2rem; 
+    width: 20px; 
     text-align: center;
 }
 
 .social-links a:hover {
     color: #aaaaaa;
-    transform: translateX(5px); /* Subtle slide effect on hover */
+    transform: translateX(5px);
 }
 
 .copyright {
@@ -522,24 +512,16 @@ h2 {
         padding: 15px 0;
     }
     
-    #highlights {
-        padding: 0;
-        margin: 0;
-        line-height: 0;
-    }
-    
     .slide{
         height: 300px;
     }
     
     .menu-toggle {
         display: block;
-        /* Show hamburger menu on mobile */
     }
 
     #nav-links {
         display: none;
-        /* Hide nav by default on mobile */
         position: absolute;
         top: 100%;
         left: 0;
@@ -550,7 +532,6 @@ h2 {
 
     #nav-links.active {
         display: block;
-        /* Show nav when active class is added by JS */
     }
 
     #nav-link a{
@@ -582,7 +563,6 @@ h2 {
 
     .edition-item {
         flex-direction: column;
-        /* Stacks image and text on mobile */
         align-items: center;
         text-align: center;
     }
