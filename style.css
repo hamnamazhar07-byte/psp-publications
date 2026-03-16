@@ -282,6 +282,7 @@ h2 {
     .hero-img {
         height: auto;
         width: auto;
+        object-fit: contain;
     }
 }
 
