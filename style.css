@@ -281,8 +281,7 @@ h2 {
 @media (max-width: 768px) {
     .hero-img {
         height: auto;
-        width: auto;
-        object-fit: contain;
+        width: 100%;
     }
 }
 
